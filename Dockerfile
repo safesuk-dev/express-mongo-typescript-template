@@ -1,3 +1,4 @@
+# set default as x64, for pi need to use arm64
 ARG ARCH_DEFAULT=x64
 
 FROM node:14 as build
@@ -11,14 +12,10 @@ COPY package*.json ./
 RUN npm ci --ignore-scripts
 RUN npm i pkg -g
 
-# RUN ARCH=$(dpkg --print-architecture)
-# RUN echo ${ARCH}
-# RUN if [ ARCH = "amd64" ] ; then ARCH = "arm64"; fi
-
-COPY . . 
+COPY . .
 RUN npm run build
-RUN echo $(ARCH)
-RUN pkg -t ${NODE}-${PLATFORM}-$(ARCH)  dist/src/index.js -o index
+RUN echo ${ARCH}
+RUN pkg -t ${NODE}-${PLATFORM}-${ARCH}  dist/src/index.js -o index
 
 
 FROM alpine
