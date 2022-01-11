@@ -1,9 +1,9 @@
-import * as photoController from '@/controller/photo'
-
 import { Router } from 'express'
+import PhotoRouter from './photo'
 
 const router = Router()
 
-router.get('/photo', photoController.listPhoto)
+const apiPrefix = '/api/v1'
+router.use(apiPrefix,PhotoRouter)
 
 export default router

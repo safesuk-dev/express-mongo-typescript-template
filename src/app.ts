@@ -4,10 +4,14 @@ import cors from 'cors'
 import express from 'express'
 import helmet from 'helmet'
 import morgan from 'morgan'
-import routes from '@/route'
+import routes from './route'
+import mongoDB from './mongo'
 
 export const createApp = (): express.Application => {
   const app = express()
+
+  // intialize database
+  mongoDB.connect()
 
   app.use(cors())
   app.use(helmet())
@@ -20,7 +24,7 @@ export const createApp = (): express.Application => {
   )
 
   // API Routes
-  app.use('/api/v1', routes)
+  app.use(routes)
 
   // Error Middleware
 //   app.use(errorHandler.genericErrorHandler);

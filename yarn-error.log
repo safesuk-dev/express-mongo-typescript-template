@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/bin/yarn init
+  /usr/local/bin/node /usr/local/bin/yarn add ef-tspm -D
 
 PATH: 
   /Users/nattapat/.pyenv/shims:/Users/nattapat/.gvm/bin:/usr/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/Library/Apple/usr/bin:/usr/local/go//bin:/Users/nattapat/go/bin
@@ -14,20 +14,60 @@ Platform:
   darwin x64
 
 Trace: 
-  Error: canceled
-      at Interface.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:136216:13)
-      at Interface.emit (node:events:390:28)
-      at Interface._ttyWrite (node:readline:1081:16)
-      at ReadStream.onkeypress (node:readline:288:10)
-      at ReadStream.emit (node:events:390:28)
-      at emitKeys (node:internal/readline/utils:358:14)
-      at emitKeys.next (<anonymous>)
-      at ReadStream.onData (node:internal/readline/emitKeypressEvents:61:36)
-      at ReadStream.emit (node:events:390:28)
-      at addChunk (node:internal/streams/readable:315:12)
+  Error: https://registry.yarnpkg.com/ef-tspm: Not found
+      at Request.params.callback [as _callback] (/usr/local/lib/node_modules/yarn/lib/cli.js:66988:18)
+      at Request.self.callback (/usr/local/lib/node_modules/yarn/lib/cli.js:140662:22)
+      at Request.emit (node:events:390:28)
+      at Request.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:141634:10)
+      at Request.emit (node:events:390:28)
+      at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:141556:12)
+      at Object.onceWrapper (node:events:509:28)
+      at IncomingMessage.emit (node:events:402:35)
+      at endReadableNT (node:internal/streams/readable:1343:12)
+      at processTicksAndRejections (node:internal/process/task_queues:83:21)
 
 npm manifest: 
-  No manifest
+  {
+    "name": "express-typescript-template",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT",
+    "devDependencies": {
+      "@types/cors": "^2.8.12",
+      "@types/express": "^4.17.13",
+      "@types/morgan": "^1.9.3",
+      "@types/node": "^17.0.8",
+      "@typescript-eslint/eslint-plugin": "^5.9.0",
+      "@typescript-eslint/parser": "^5.9.0",
+      "eslint": "^8.6.0",
+      "husky": "^7.0.4",
+      "npm-run-all": "^4.1.5",
+      "rimraf": "^3.0.2",
+      "ts-node-dev": "^1.1.8",
+      "typescript": "^4.5.4"
+    },
+    "scripts": {
+      "lint": "eslint --ext .ts --ignore-path .gitignore .",
+      "lint:fix": "eslint --ext .ts --ignore-path .gitignore .  --fix",
+      "transpile": "tsc",
+      "dev": "run-s start",
+      "start": "ts-node-dev ./src/index.ts",
+      "clean": "rimraf dist",
+      "build": "NODE_ENV=production run-s clean transpile",
+      "serve": "node dist/index.js",
+      "prepare": "husky install",
+      "postbuild": "ef-tspm"
+    },
+    "dependencies": {
+      "cors": "^2.8.5",
+      "dotenv": "^10.0.0",
+      "express": "^4.17.2",
+      "helmet": "^5.0.1",
+      "module-alias": "^2.2.2",
+      "mongoose": "^6.1.5",
+      "morgan": "^1.10.0"
+    }
+  }
 
 yarn manifest: 
   No manifest
