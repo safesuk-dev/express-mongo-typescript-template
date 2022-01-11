@@ -1,4 +1,4 @@
-import {CreatePhotoRequest, ListPhotoResponse, Photo, PhotoResponseItem} from '../model/photo'
+import {CreatePhotoRequest, ListPhotoResponse, PhotoResponseItem} from '../model/photo'
 import photoRepository from '../repository/photo'
 /**
  * List books
