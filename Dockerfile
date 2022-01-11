@@ -7,13 +7,20 @@ RUN npm i pkg -g
 
 COPY . . 
 RUN npm run build
-RUN pkg -t host dist/src/index.js
+RUN pkg  -t node14-alpine-x64  dist/src/index.js -o index
 
-FROM alpine:3.12.0
-RUN apk add --no-cache
+
+FROM alpine
 WORKDIR /app
+
+# install required libs
+RUN apk add --no-cache libstdc++ libgcc
+ENV NODE_ENV=production
+ENV PORT=3000
 COPY --from=build /app/package.json .
 COPY --from=build /app/index .
-RUN chmod a+x index
+# default port
 EXPOSE 3000
-ENTRYPOINT ["./index"]
+
+RUN ls
+CMD ["./index"]
