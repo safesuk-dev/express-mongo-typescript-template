@@ -6,9 +6,10 @@ RUN npm ci --ignore-scripts
 RUN npm i pkg -g
 ENV NODE node14
 ENV PLATFORM alpine
-RUN ARCH=$(dpkg --print-architecture)
-RUN echo ${ARCH}
-RUN if [ ARCH = "amd64" ] ; then ARCH = "arm64"; fi
+ENV ARCH x64
+# RUN ARCH=$(dpkg --print-architecture)
+# RUN echo ${ARCH}
+# RUN if [ ARCH = "amd64" ] ; then ARCH = "arm64"; fi
 
 COPY . . 
 RUN npm run build
