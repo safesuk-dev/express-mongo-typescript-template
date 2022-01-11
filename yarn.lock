@@ -481,7 +481,7 @@ chalk@^2.4.1:
     escape-string-regexp "^1.0.5"
     supports-color "^5.3.0"
 
-chalk@^4.0.0:
+chalk@^4.0.0, chalk@^4.1.0:
   version "4.1.2"
   resolved "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz"
   integrity sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==
@@ -981,7 +981,19 @@ execa@^1.0.0:
     signal-exit "^3.0.0"
     strip-eof "^1.0.0"
 
-express@^4.17.2:
+express-jsdoc-swagger@^1.6.7:
+  version "1.6.7"
+  resolved "https://registry.yarnpkg.com/express-jsdoc-swagger/-/express-jsdoc-swagger-1.6.7.tgz#be799e5af7705e626fb3260c6ba700fbb37e21b3"
+  integrity sha512-VyPfepdEdXYOrjVBn0gW9+WnxhJS7in494w3g8k0EqdNN0vXWMdI3N+nuJDJFBXoENrSyfQLeY6yJo0K2PKYSw==
+  dependencies:
+    chalk "^4.1.0"
+    doctrine "^3.0.0"
+    express "^4.17.1"
+    glob "^7.1.6"
+    merge "^2.1.1"
+    swagger-ui-express "^4.1.6"
+
+express@^4.17.1, express@^4.17.2:
   version "4.17.2"
   resolved "https://registry.npmjs.org/express/-/express-4.17.2.tgz"
   integrity sha512-oxlxJxcQlYwqPWKVJJtvQiwHgosH/LrLSPA+H4UxpyvSS6jC5aH+5MoHFM+KABgTOt0APue4w66Ha8jCUo9QGg==
@@ -1180,7 +1192,7 @@ glob-parent@^6.0.1:
   dependencies:
     is-glob "^4.0.3"
 
-glob@^7.1.3:
+glob@^7.1.3, glob@^7.1.6:
   version "7.2.0"
   resolved "https://registry.npmjs.org/glob/-/glob-7.2.0.tgz"
   integrity sha512-lmLf6gtyrPq8tTjSmrO94wBeQbFR3HbLHbuyD69wuyQkImp2hWqMGB47OX65FBkPffO641IP9jWa1z4ivqG26Q==
@@ -1625,6 +1637,11 @@ merge2@^1.3.0, merge2@^1.4.1:
   version "1.4.1"
   resolved "https://registry.npmjs.org/merge2/-/merge2-1.4.1.tgz"
   integrity sha512-8q7VEgMJW4J8tcfVPy8g09NcQwZdbwFEqhe/WZkoIzjn/3TGDwtOCYtXGxA3O8tPzpczCCDgv+P2P5y00ZJOOg==
+
+merge@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/merge/-/merge-2.1.1.tgz#59ef4bf7e0b3e879186436e8481c06a6c162ca98"
+  integrity sha512-jz+Cfrg9GWOZbQAnDQ4hlVnQky+341Yk5ru8bZSe6sIDTCIg8n9i/u7hSQGSVOF3C7lH6mGtqjkiT9G4wFLL0w==
 
 methods@~1.1.2:
   version "1.1.2"
@@ -2465,6 +2482,18 @@ supports-preserve-symlinks-flag@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npmjs.org/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz"
   integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
+
+swagger-ui-dist@>=4.1.3:
+  version "4.1.3"
+  resolved "https://registry.yarnpkg.com/swagger-ui-dist/-/swagger-ui-dist-4.1.3.tgz#2be9f9de9b5c19132fa4a5e40933058c151563dc"
+  integrity sha512-WvfPSfAAMlE/sKS6YkW47nX/hA7StmhYnAHc6wWCXNL0oclwLj6UXv0hQCkLnDgvebi0MEV40SJJpVjKUgH1IQ==
+
+swagger-ui-express@^4.1.6:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/swagger-ui-express/-/swagger-ui-express-4.3.0.tgz#226238ab231f7718f9109d63a66efc3a795618dd"
+  integrity sha512-jN46SEEe9EoXa3ZgZoKgnSF6z0w3tnM1yqhO4Y+Q4iZVc8JOQB960EZpIAz6rNROrDApVDwcMHR0mhlnc/5Omw==
+  dependencies:
+    swagger-ui-dist ">=4.1.3"
 
 text-hex@1.0.x:
   version "1.0.0"

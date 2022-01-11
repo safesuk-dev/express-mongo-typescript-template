@@ -4,11 +4,14 @@ import cors from 'cors'
 import express from 'express'
 import helmet from 'helmet'
 import morgan from 'morgan'
+import expressJSDocSwagger from 'express-jsdoc-swagger'
 import routes from './route'
 import mongoDB from './mongo'
+import swaggerOptions from './swagger'
 
 export const createApp = (): express.Application => {
   const app = express()
+  expressJSDocSwagger(app)(swaggerOptions)
 
   // intialize database
   mongoDB.connect()

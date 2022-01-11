@@ -18,7 +18,10 @@ export const listPhoto = async (): Promise<ListPhotoResponse> => {
 
 }
 
-export const createPhoto = async(createReq:CreatePhotoRequest): Promise<Photo> => {
+export const createPhoto = async(createReq:CreatePhotoRequest): Promise<PhotoResponseItem> => {
     const newItem = await photoRepository.createPhoto(createReq)
-    return newItem
+    return {
+      name:newItem.name,
+      url:newItem.url
+    }
 }
