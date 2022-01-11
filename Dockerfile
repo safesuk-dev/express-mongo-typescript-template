@@ -9,10 +9,11 @@ COPY . .
 RUN npm run build
 RUN pkg -t host dist/src/index.js
 
-
-FROM alpine
-RUN apk add --no-cache libstdc++ libgcc
+FROM alpine:3.12.0
+RUN apk add --no-cache
 WORKDIR /app
 COPY --from=build /app/package.json .
 COPY --from=build /app/index .
-CMD ["./index"]
+RUN chmod a+x index
+EXPOSE 3000
+ENTRYPOINT ["./index"]
