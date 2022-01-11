@@ -10,5 +10,6 @@ run-rabbit:
 build-dev-image:
 	docker build . -t example-app
 
+	docker build . -t example-app --build-arg ARCH_DEFAULT=arm64
 run-dev-image:
 	docker run -p 3000:3000 -e MONGO_CONNECTION_STRING=mongodb://mongoadmin:secret@192.168.1.72:27017 -e MONGO_DATABASE_NAME=photo -e PORT=3000 example-app
