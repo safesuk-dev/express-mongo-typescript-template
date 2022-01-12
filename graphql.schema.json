@@ -1,7 +1,7 @@
 {
   "__schema": {
     "queryType": {
-      "name": "RootQuery"
+      "name": "Query"
     },
     "mutationType": null,
     "subscriptionType": null,
@@ -79,7 +79,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "RootQuery",
+        "name": "Query",
         "description": null,
         "fields": [
           {

@@ -1,8 +1,4 @@
-schema {
-    query: RootQuery
-}
-
-type RootQuery {
+type Query {
     photo(id: ID!): Photo!
 }
 
