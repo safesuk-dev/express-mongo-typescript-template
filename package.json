@@ -35,7 +35,7 @@
     "dev": "run-s start",
     "start": "ts-node-dev ./src/index.ts",
     "clean": "rimraf dist",
-    "transpile:swc": "swc src -d dist --source-maps --copy-files",
+    "transpile:swc": "swc src  -d dist  --source-maps --copy-files",
     "build": "NODE_ENV=production run-s clean transpile:swc",
     "copy-gql": "copyfiles -u 1 ./src/**/*.gql ./dist/src",
     "build:tsc": "NODE_ENV=production run-s clean transpile copy-gql",

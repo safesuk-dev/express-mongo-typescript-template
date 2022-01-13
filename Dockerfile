@@ -9,13 +9,17 @@ ENV PLATFORM alpine
 RUN ARCH=$ARCH_DEFAULT
 
 COPY package*.json ./
-RUN npm ci --ignore-scripts
-RUN npm i pkg -g
+COPY yarn.lock ./
+
+RUN yarn --ignore-scripts
+RUN npm i pkg  -g
+
 
 COPY . .
-RUN npm run build
+RUN yarn build
 RUN echo ${ARCH}
-RUN pkg -t ${NODE}-${PLATFORM}-${ARCH}  dist/src/index.js -o index
+# *** if use build:tsc it will be dist/src/index.js ***
+RUN pkg -t ${NODE}-${PLATFORM}-${ARCH}  dist/index.js -o index
 
 
 FROM alpine
