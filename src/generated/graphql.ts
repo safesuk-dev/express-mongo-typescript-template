@@ -20,6 +20,17 @@ export type AdditionalEntityFields = {
   type?: InputMaybe<Scalars['String']>;
 };
 
+export type Mutation = {
+  __typename?: 'Mutation';
+  addPhoto?: Maybe<Photo>;
+};
+
+
+export type MutationAddPhotoArgs = {
+  name?: InputMaybe<Scalars['String']>;
+  url?: InputMaybe<Scalars['String']>;
+};
+
 export type Photo = {
   __typename?: 'Photo';
   id: Scalars['ID'];
@@ -29,6 +40,7 @@ export type Photo = {
 
 export type Query = {
   __typename?: 'Query';
+  listPhoto?: Maybe<Array<Photo>>;
   photo: Photo;
 };
 
@@ -108,6 +120,7 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 export type ResolversTypes = {
   AdditionalEntityFields: AdditionalEntityFields;
   String: ResolverTypeWrapper<Scalars['String']>;
+  Mutation: ResolverTypeWrapper<{}>;
   Photo: ResolverTypeWrapper<Photo>;
   ID: ResolverTypeWrapper<Scalars['ID']>;
   Query: ResolverTypeWrapper<{}>;
@@ -118,6 +131,7 @@ export type ResolversTypes = {
 export type ResolversParentTypes = {
   AdditionalEntityFields: AdditionalEntityFields;
   String: Scalars['String'];
+  Mutation: {};
   Photo: Photo;
   ID: Scalars['ID'];
   Query: {};
@@ -171,6 +185,10 @@ export type MapDirectiveArgs = {
 
 export type MapDirectiveResolver<Result, Parent, ContextType = any, Args = MapDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
 
+export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
+  addPhoto?: Resolver<Maybe<ResolversTypes['Photo']>, ParentType, ContextType, RequireFields<MutationAddPhotoArgs, never>>;
+};
+
 export type PhotoResolvers<ContextType = any, ParentType extends ResolversParentTypes['Photo'] = ResolversParentTypes['Photo']> = {
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
@@ -179,10 +197,12 @@ export type PhotoResolvers<ContextType = any, ParentType extends ResolversParent
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
+  listPhoto?: Resolver<Maybe<Array<ResolversTypes['Photo']>>, ParentType, ContextType>;
   photo?: Resolver<ResolversTypes['Photo'], ParentType, ContextType, RequireFields<QueryPhotoArgs, 'id'>>;
 };
 
 export type Resolvers<ContextType = any> = {
+  Mutation?: MutationResolvers<ContextType>;
   Photo?: PhotoResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
 };

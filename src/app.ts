@@ -9,6 +9,7 @@ import mongoDB from './mongo'
 import swaggerOptions from './swagger'
 import { ApolloServer } from 'apollo-server-express'
 import typeDefs from './graphql/schema/schema.gql'
+import resolvers from './resolvers'
 import expressPlayground from 'graphql-playground-middleware-express'
 const graphQLPlayground = expressPlayground
 export const createApp = async (): Promise<express.Application> => {
@@ -30,10 +31,11 @@ export const createApp = async (): Promise<express.Application> => {
 
   const apolloServer = new ApolloServer({
     typeDefs: typeDefs,
+    resolvers:resolvers,
     context: async () => null,
-    formatResponse: (response, request) => {
-      const { query } = request.request
-      if(query) console.log(query)
+    formatResponse: (response) => {
+      // const { query } = request.request
+      // if(query) console.log(query)
       return response
     },
     formatError: error => {
