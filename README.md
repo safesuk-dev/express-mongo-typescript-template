@@ -2,13 +2,19 @@
 ### How to run project
 
 
-# Feature in this template
-[x] example of rest
-[x] example of graphQL
-[x] swagger
-[ ] unit test
-[ ] mongo as database
-[ ] auth?
+## Feature in this template
+
+- [ ] example of rest
+
+- [x] example of graphQL
+
+- [x] swagger
+
+- [ ] unit test
+
+- [ ] mongo as database
+
+- [ ] auth?
 
 ```sh
 # npm
