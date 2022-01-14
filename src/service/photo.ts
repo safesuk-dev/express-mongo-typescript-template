@@ -5,9 +5,10 @@ import photoRepository from '../repository/photo'
  *
  * @returns {ListPhotoResponse}
  */
-export const listPhoto = async (): Promise<ListPhotoResponse> => {
+const listPhoto = async (): Promise<ListPhotoResponse> => {
   const listPhoto = await photoRepository.listPhoto()
   const list:PhotoResponseItem[] = listPhoto.map(i=>({
+    id:i._id,
     name:i.name,
     url:i.url
   }))
@@ -18,10 +19,17 @@ export const listPhoto = async (): Promise<ListPhotoResponse> => {
 
 }
 
-export const createPhoto = async(createReq:CreatePhotoRequest): Promise<PhotoResponseItem> => {
+const createPhoto = async(createReq:CreatePhotoRequest): Promise<PhotoResponseItem> => {
     const newItem = await photoRepository.createPhoto(createReq)
     return {
+      id:newItem._id,
       name:newItem.name,
       url:newItem.url
     }
+}
+
+
+export default {
+  listPhoto,
+  createPhoto
 }

@@ -14,12 +14,12 @@ const photoSchema: Schema = new Schema({
 
 export const photoModel = model<Photo & Document>('Photo', photoSchema)
 
-export const listPhoto = async ():Promise<Photo[]>=>{
+const listPhoto = async ():Promise<Photo[]>=>{
     const list:Photo[] = await photoModel.find()
     return list
 }
 
-export const createPhoto = async (photoData:CreatePhotoRequest):Promise<Photo>=>{
+const createPhoto = async (photoData:CreatePhotoRequest):Promise<Photo>=>{
     try{
         const photo = await photoModel.create({...photoData})
         return photo

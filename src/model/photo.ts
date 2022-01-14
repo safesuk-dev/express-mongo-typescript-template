@@ -10,6 +10,7 @@ export interface CreatePhotoRequest{
 }
 
 export interface PhotoResponseItem{
+    id:string
     name:string
     url:string
 }
