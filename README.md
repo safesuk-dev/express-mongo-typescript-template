@@ -8,9 +8,9 @@
 
 - [x] swagger
 
-- [ ] unit test
+- [x] unit test
 
-- [ ] mongo as database
+- [x] mongo as database
 
 - [ ] auth?
 
