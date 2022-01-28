@@ -1,5 +1,5 @@
 import { hash } from '@/util/crypt'
-import { model, Schema, Document } from 'mongoose'
+import { model, Schema } from 'mongoose'
 import {CreateUserRequest, User} from './model'
 
 const userSchema: Schema = new Schema({
