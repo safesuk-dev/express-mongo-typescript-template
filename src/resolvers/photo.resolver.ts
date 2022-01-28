@@ -1,9 +1,9 @@
 import {Photo, MutationAddPhotoArgs} from '../generated/graphql'
 import photoService from '../service/photo'
 
-export const listPhoto = async()=> {
-    const list =  await photoService.listPhoto()
-    return list
+export const listPhoto = async() :Promise<Photo[]>=> {
+    const resp =  await photoService.listPhoto()
+    return resp.list
   }
 
 

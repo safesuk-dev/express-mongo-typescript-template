@@ -11,6 +11,8 @@ import { ApolloServer } from 'apollo-server-express'
 import typeDefs from './graphql/schema/schema.gql'
 import resolvers from './resolvers'
 import expressPlayground from 'graphql-playground-middleware-express'
+import cookieParser from 'cookie-parser'
+import { errorMiddleware } from './middleware/error.middleware'
 const graphQLPlayground = expressPlayground
 export const createApp = async (): Promise<express.Application> => {
   const app = express()
@@ -28,6 +30,7 @@ export const createApp = async (): Promise<express.Application> => {
       extended: true,
     }),
   )
+  app.use(cookieParser())
 
   const apolloServer = new ApolloServer({
     typeDefs: typeDefs,
@@ -49,10 +52,7 @@ export const createApp = async (): Promise<express.Application> => {
   app.get('/pg', graphQLPlayground({ endpoint: '/graphql'}))
   // API Routes
   app.use(routes)
-
   // Error Middleware
-//   app.use(errorHandler.genericErrorHandler);
-//   app.use(errorHandler.notFoundError);
-
+  app.use(errorMiddleware)
   return app
 }

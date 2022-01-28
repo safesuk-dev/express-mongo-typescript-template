@@ -14,7 +14,8 @@ const CONFIG = {
       DATABASE_NAME:process.env.MONGO_DATABASE_NAME
   },
   AUTH:{
-    SALT_ROUNDS:process.env.SALT_ROUNDS || '10'
+    SALT_ROUNDS:process.env.SALT_ROUNDS || '10',
+    SECRET_KEY:process.env.SECRET_KEY || 'secret'
   }
 }
 

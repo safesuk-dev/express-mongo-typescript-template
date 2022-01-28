@@ -1,19 +1,19 @@
-import { hash } from '@/util/crypt'
+import { hash } from '../util/crypt'
 import { model, Schema } from 'mongoose'
 import {CreateUserRequest, User} from './model'
 
 const userSchema: Schema = new Schema({
-  name: {
+  email: {
     type: String,
     required: true,
   },
-  url: {
+  password: {
     type: String,
     required: true,
   },
 })
 
-export const userModel = model<User>('Photo', userSchema)
+export const userModel = model<User>('User', userSchema)
 
 const listUser = async ():Promise<User[]>=>{
     const list:User[] = await userModel.find()
@@ -47,8 +47,22 @@ const getUserByID = async (id:string):Promise<User|null>=>{
     }
 }
 
+const getUserByEmail = async (email:string):Promise<User|null>=>{
+    try{
+        const item:User|null = await userModel.findOne({where: { email: email } })
+        if(!item){
+            return null
+        }
+        return item
+    } catch(e) {
+        console.error(e)
+        return null
+    }
+}
+
 export default {
     createUser,
     listUser,
-    getUserByID
+    getUserByID,
+    getUserByEmail
 }

@@ -1,0 +1,28 @@
+import { User } from '../user/model'
+import { NextFunction,Request,Response } from 'express'
+import AuthService from '../auth/service'
+import {HttpError} from '../error'
+
+export interface RequestWithUser extends Request {
+    user: User;
+}
+
+export const authMiddleware = async (_req: Request, res: Response, next: NextFunction) => {
+  const req = _req as RequestWithUser
+    try {
+      const token = req.cookies['Authorization'] || (req.header('Authorization') ? req.cookies['Authorization'].split('Bearer ')[1] : null)
+      if (token) {
+        const findUser = await AuthService.check(token)
+        if (findUser) {
+          req.user = findUser
+          next()
+          return
+        }
+      }
+    } catch (error) {
+      next(new HttpError(401, 'Authentication token missing'))
+      return
+    }
+    next(new HttpError(401, 'Authentication token missing'))
+    return
+  }
