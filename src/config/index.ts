@@ -12,6 +12,9 @@ const CONFIG = {
   MONGO:{
       CONNECTION_STRING:process.env.MONGO_CONNECTION_STRING,
       DATABASE_NAME:process.env.MONGO_DATABASE_NAME
+  },
+  AUTH:{
+    SALT_ROUNDS:process.env.SALT_ROUNDS || '10'
   }
 }
 
