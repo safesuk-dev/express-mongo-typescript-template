@@ -20,7 +20,8 @@ export const authMiddleware = async (_req: Request, res: Response, next: NextFun
         }
       }
     } catch (error) {
-      next(new HttpError(401, 'Authentication token missing'))
+      const err = error as Error
+      next(new HttpError(401, err.message))
       return
     }
     next(new HttpError(401, 'Authentication token missing'))
