@@ -8,11 +8,15 @@ import routes from './route'
 import mongoDB from './mongo'
 import swaggerOptions from './swagger'
 import { ApolloServer } from 'apollo-server-express'
-import typeDefs from './graphql/schema/schema.gql'
+import schema from './graphql/schema/schema.gql'
+import userSchema from './graphql/schema/user.gql'
 import resolvers from './resolvers'
 import expressPlayground from 'graphql-playground-middleware-express'
 import cookieParser from 'cookie-parser'
 import { errorMiddleware } from './middleware/error.middleware'
+import {  authMiddlewareGQL } from './middleware/auth.middleware'
+import { GraphQLError } from 'graphql'
+import { GraphQLResponse } from 'apollo-server-express/node_modules/apollo-server-core'
 const graphQLPlayground = expressPlayground
 export const createApp = async (): Promise<express.Application> => {
   const app = express()
@@ -33,16 +37,24 @@ export const createApp = async (): Promise<express.Application> => {
   app.use(cookieParser())
 
   const apolloServer = new ApolloServer({
-    typeDefs: typeDefs,
+    typeDefs:[schema,userSchema],
     resolvers:resolvers,
-    context: async () => null,
-    formatResponse: (response) => {
+    context: async ({ req }) => {
+      try {
+        const user = await authMiddlewareGQL(req)
+        return { user }
+      } catch (error) {
+        console.log('error')
+        const err = error as Error
+        throw err
+      }
+    },
+    formatResponse: (response: GraphQLResponse) => {
       // const { query } = request.request
       // if(query) console.log(query)
       return response
     },
-    formatError: error => {
-      console.error(error)
+    formatError: (error: GraphQLError) => {
       return error
     },
   })

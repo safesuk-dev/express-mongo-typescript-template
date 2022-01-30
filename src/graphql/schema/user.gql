@@ -1,0 +1,8 @@
+type Query {
+    listUser: [User!]
+}
+
+type User {
+  id: ID!
+  email: String
+}

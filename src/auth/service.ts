@@ -1,4 +1,4 @@
-import { DataStoredInToken, LoginRequest, TokenData } from './model'
+import { DataStoredInToken, LoginRequest, LoginResponse, TokenData } from './model'
 import CONFIG from '../config'
 import { User } from '../user/model'
 import { sign, verify } from 'jsonwebtoken'
@@ -18,7 +18,7 @@ const createToken =  (user: User): TokenData => {
 const createCookie = (tokenData: TokenData): string => {
     return `Authorization=${tokenData.token}; HttpOnly; Max-Age=${tokenData.expiresIn};`
 }
-const login = async (request:LoginRequest): Promise<{ cookie: string; findUser: User,tokenData:TokenData }> => {
+const login = async (request:LoginRequest): Promise<{ cookie: string; findUser: User,response:LoginResponse }> => {
     if (isEmpty(request)) throw new HttpError(400, 'You\'re not userData')
 
     const findUser: User|null = await UserRepository.getUserByEmail(request.email)
@@ -31,8 +31,12 @@ const login = async (request:LoginRequest): Promise<{ cookie: string; findUser: 
 
     const tokenData = createToken(findUser)
     const cookie = createCookie(tokenData)
+    const response = {
+        email:findUser.email,
+        tokenData:tokenData
+    } as LoginResponse
 
-    return { cookie, findUser,tokenData }
+    return { cookie, findUser,response }
 }
 
 const check =  async (token:string):Promise<User> => {

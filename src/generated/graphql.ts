@@ -1,4 +1,5 @@
 import { GraphQLResolveInfo } from 'graphql';
+import { Context } from '../graphql/contextType';
 import gql from 'graphql-tag';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -41,11 +42,18 @@ export type Photo = {
 export type Query = {
   __typename?: 'Query';
   listPhoto?: Maybe<Array<Photo>>;
+  listUser?: Maybe<Array<User>>;
   photo: Photo;
 };
 
 
 export type QueryPhotoArgs = {
+  id: Scalars['ID'];
+};
+
+export type User = {
+  __typename?: 'User';
+  email?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
 };
 
@@ -124,6 +132,7 @@ export type ResolversTypes = {
   Photo: ResolverTypeWrapper<Photo>;
   ID: ResolverTypeWrapper<Scalars['ID']>;
   Query: ResolverTypeWrapper<{}>;
+  User: ResolverTypeWrapper<User>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
 };
 
@@ -135,6 +144,7 @@ export type ResolversParentTypes = {
   Photo: Photo;
   ID: Scalars['ID'];
   Query: {};
+  User: User;
   Boolean: Scalars['Boolean'];
 };
 
@@ -143,71 +153,79 @@ export type UnionDirectiveArgs = {
   additionalFields?: Maybe<Array<Maybe<AdditionalEntityFields>>>;
 };
 
-export type UnionDirectiveResolver<Result, Parent, ContextType = any, Args = UnionDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
+export type UnionDirectiveResolver<Result, Parent, ContextType = Context, Args = UnionDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
 
 export type AbstractEntityDirectiveArgs = {
   discriminatorField: Scalars['String'];
   additionalFields?: Maybe<Array<Maybe<AdditionalEntityFields>>>;
 };
 
-export type AbstractEntityDirectiveResolver<Result, Parent, ContextType = any, Args = AbstractEntityDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
+export type AbstractEntityDirectiveResolver<Result, Parent, ContextType = Context, Args = AbstractEntityDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
 
 export type EntityDirectiveArgs = {
   embedded?: Maybe<Scalars['Boolean']>;
   additionalFields?: Maybe<Array<Maybe<AdditionalEntityFields>>>;
 };
 
-export type EntityDirectiveResolver<Result, Parent, ContextType = any, Args = EntityDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
+export type EntityDirectiveResolver<Result, Parent, ContextType = Context, Args = EntityDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
 
 export type ColumnDirectiveArgs = {
   overrideType?: Maybe<Scalars['String']>;
 };
 
-export type ColumnDirectiveResolver<Result, Parent, ContextType = any, Args = ColumnDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
+export type ColumnDirectiveResolver<Result, Parent, ContextType = Context, Args = ColumnDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
 
 export type IdDirectiveArgs = { };
 
-export type IdDirectiveResolver<Result, Parent, ContextType = any, Args = IdDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
+export type IdDirectiveResolver<Result, Parent, ContextType = Context, Args = IdDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
 
 export type LinkDirectiveArgs = {
   overrideType?: Maybe<Scalars['String']>;
 };
 
-export type LinkDirectiveResolver<Result, Parent, ContextType = any, Args = LinkDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
+export type LinkDirectiveResolver<Result, Parent, ContextType = Context, Args = LinkDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
 
 export type EmbeddedDirectiveArgs = { };
 
-export type EmbeddedDirectiveResolver<Result, Parent, ContextType = any, Args = EmbeddedDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
+export type EmbeddedDirectiveResolver<Result, Parent, ContextType = Context, Args = EmbeddedDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
 
 export type MapDirectiveArgs = {
   path: Scalars['String'];
 };
 
-export type MapDirectiveResolver<Result, Parent, ContextType = any, Args = MapDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
+export type MapDirectiveResolver<Result, Parent, ContextType = Context, Args = MapDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
 
-export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
+export type MutationResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
   addPhoto?: Resolver<Maybe<ResolversTypes['Photo']>, ParentType, ContextType, RequireFields<MutationAddPhotoArgs, never>>;
 };
 
-export type PhotoResolvers<ContextType = any, ParentType extends ResolversParentTypes['Photo'] = ResolversParentTypes['Photo']> = {
+export type PhotoResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Photo'] = ResolversParentTypes['Photo']> = {
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   url?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
+export type QueryResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   listPhoto?: Resolver<Maybe<Array<ResolversTypes['Photo']>>, ParentType, ContextType>;
+  listUser?: Resolver<Maybe<Array<ResolversTypes['User']>>, ParentType, ContextType>;
   photo?: Resolver<ResolversTypes['Photo'], ParentType, ContextType, RequireFields<QueryPhotoArgs, 'id'>>;
 };
 
-export type Resolvers<ContextType = any> = {
+export type UserResolvers<ContextType = Context, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = {
+  email?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type Resolvers<ContextType = Context> = {
   Mutation?: MutationResolvers<ContextType>;
   Photo?: PhotoResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
+  User?: UserResolvers<ContextType>;
 };
 
-export type DirectiveResolvers<ContextType = any> = {
+export type DirectiveResolvers<ContextType = Context> = {
   union?: UnionDirectiveResolver<any, any, ContextType>;
   abstractEntity?: AbstractEntityDirectiveResolver<any, any, ContextType>;
   entity?: EntityDirectiveResolver<any, any, ContextType>;

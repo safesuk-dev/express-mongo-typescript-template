@@ -6,5 +6,5 @@ export const login = async (req: Request, res: Response) => {
   const request:LoginRequest = req.body 
   const result = await  AuthService.login(request)
   res.setHeader('Set-Cookie', result.cookie)
-  res.status(200).json({ data: result.findUser, message: 'login' }).end()
+  res.status(200).json({ data: result.response, message: 'login' }).end()
 }

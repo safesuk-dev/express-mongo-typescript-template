@@ -4,6 +4,12 @@ export interface LoginRequest {
     password:string
 }
 
+export interface LoginResponse {
+  email:string
+  tokenData:TokenData
+}
+
+
 export interface DataStoredInToken {
     id: string;
   }

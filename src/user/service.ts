@@ -8,6 +8,7 @@ import userRepository from './repository'
 const listUser = async (): Promise<ListUserResponse> => {
   const listUser = await userRepository.listUser()
   const list:UserItemResponse[] = listUser.map(i=>({
+    id:i._id,
     email:i.email
   }))
   const response:ListUserResponse = {
@@ -20,6 +21,7 @@ const listUser = async (): Promise<ListUserResponse> => {
 const createUser = async(createReq:CreateUserRequest): Promise<UserItemResponse> => {
     const newItem = await userRepository.createUser(createReq)
     return {
+      id:newItem._id,
      email:newItem.email
     }
 }

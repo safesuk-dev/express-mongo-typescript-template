@@ -8,6 +8,8 @@ generates:
       - "typescript-resolvers"
       - "typescript-mongodb"
       - "typescript-document-nodes"
+    config:
+      contextType: ../graphql/contextType#Context
   ./graphql.schema.json:
     plugins:
       - "introspection"
